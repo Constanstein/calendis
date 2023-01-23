@@ -1,0 +1,52 @@
+window.fcWidget.init({
+    token: '97a3a2bd-2b5a-4957-8785-95e37a3d2841',
+    host: 'https://wchat.freshchat.com',
+    locale: 'ro',
+    config: {
+        headerProperty: {
+            hideChatButton: true
+        },
+        content : {
+            headers: {
+                chat: 'Informații Calendis',
+                chat_help: ' ',
+                push_notification: 'Nu rata răspunsurile noastre! Permite notificări?',
+                channel_response: {
+                    offline: 'Momentan suntem indisponibili. Te rugăm să ne lași un mesaj',
+                    online: {
+                        minutes: {
+                            one: "Răspunde în câteva minute",
+                            more: "De obicei răspunde în câteva minute"
+                        },
+                        hours: {
+                            one: "Răspunde în maxim o ora",
+                            more: "De obicei răspunde în câteva ore",
+                        }
+                    }
+                }
+            },
+            actions: {
+                push_notify_yes: 'Da',
+                push_notify_no: 'Nu'
+            },
+            placeholders: {
+                reply_field: 'Scrie-ne aici...',
+                search_field: 'Caută'
+            }
+        }
+    }
+});
+
+document.getElementById('open_fc_widget').addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    window.fcWidget.open();
+});
+
+window.fcWidget.on('widget:opened', () => {
+    document.getElementById('chat-box').style.display = 'none';
+});
+
+window.fcWidget.on('widget:closed', () => {
+    document.getElementById('chat-box').style.display = '';
+});
